@@ -75,18 +75,31 @@ class AddressBook {
             console.error('Contact not found.');
         }
     }
+///delete contact from the array
+    findAndDeleteContact(name) {
+        const index = this.contacts.findIndex(c => c.firstName === name || c.lastName === name);
+        if (index !== -1) {
+            this.contacts.splice(index, 1);
+            console.log(`Contact '${name}' deleted successfully.`);
+        } else {
+            console.error('Contact not found.');
+        }
+    }
 }
 
 const addressBook = new AddressBook();
 
 console.log(JSON.stringify(addressBook.contacts));
-addressBook.addContact("Yugdeeep Parihar", "Parihar", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "dheeraj@gmail.com");
+addressBook.addContact("Yugdeep", "Parihar", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "yugdeep@gmail.com");
 addressBook.addContact("Abc", "Sharma", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "abc@gmail.com");
-addressBook.addContact("abc", "Sharma", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "priyanshu@gmail.com");
+addressBook.addContact("Priyanshu", "Sharma", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "priyanshu@gmail.com");
 addressBook.addContact("Xyz", "Sharma", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "xyz@gmail.com");
 addressBook.addContact("Sohan", "Sharma", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "Sohan@gmail.com");
 console.log(JSON.stringify(addressBook.contacts));
 console.log();
 
 addressBook.findAndEditContact("Xyz",{city: "NewCity", phone: "9876543210"});
+console.log(JSON.stringify(addressBook.contacts,null,2));
+
+addressBook.findAndDeleteContact("Abc");
 console.log(JSON.stringify(addressBook.contacts,null,2));
